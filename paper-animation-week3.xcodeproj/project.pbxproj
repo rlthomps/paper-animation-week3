@@ -19,6 +19,8 @@
 		148D0B7E196601DC00CF77F0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 148D0B66196601DC00CF77F0 /* UIKit.framework */; };
 		148D0B86196601DC00CF77F0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 148D0B84196601DC00CF77F0 /* InfoPlist.strings */; };
 		148D0B88196601DC00CF77F0 /* paper_animation_week3Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 148D0B87196601DC00CF77F0 /* paper_animation_week3Tests.m */; };
+		148D0B941966020300CF77F0 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 148D0B921966020300CF77F0 /* MainViewController.m */; };
+		148D0B951966020300CF77F0 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 148D0B931966020300CF77F0 /* MainViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +50,9 @@
 		148D0B83196601DC00CF77F0 /* paper-animation-week3Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "paper-animation-week3Tests-Info.plist"; sourceTree = "<group>"; };
 		148D0B85196601DC00CF77F0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		148D0B87196601DC00CF77F0 /* paper_animation_week3Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = paper_animation_week3Tests.m; sourceTree = "<group>"; };
+		148D0B911966020300CF77F0 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		148D0B921966020300CF77F0 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		148D0B931966020300CF77F0 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +116,9 @@
 				148D0B72196601DC00CF77F0 /* AppDelegate.m */,
 				148D0B74196601DC00CF77F0 /* Images.xcassets */,
 				148D0B69196601DC00CF77F0 /* Supporting Files */,
+				148D0B911966020300CF77F0 /* MainViewController.h */,
+				148D0B921966020300CF77F0 /* MainViewController.m */,
+				148D0B931966020300CF77F0 /* MainViewController.xib */,
 			);
 			path = "paper-animation-week3";
 			sourceTree = "<group>";
@@ -220,6 +228,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				148D0B6D196601DC00CF77F0 /* InfoPlist.strings in Resources */,
+				148D0B951966020300CF77F0 /* MainViewController.xib in Resources */,
 				148D0B75196601DC00CF77F0 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -240,6 +249,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				148D0B73196601DC00CF77F0 /* AppDelegate.m in Sources */,
+				148D0B941966020300CF77F0 /* MainViewController.m in Sources */,
 				148D0B6F196601DC00CF77F0 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -362,7 +372,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "paper-animation-week3/paper-animation-week3-Prefix.pch";
 				INFOPLIST_FILE = "paper-animation-week3/paper-animation-week3-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -375,7 +387,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "paper-animation-week3/paper-animation-week3-Prefix.pch";
 				INFOPLIST_FILE = "paper-animation-week3/paper-animation-week3-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
