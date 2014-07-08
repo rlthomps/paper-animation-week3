@@ -11,9 +11,12 @@
 @interface MainViewController ()
 - (IBAction)headlinePanGestureRecognizer:(UIPanGestureRecognizer *)sender;
 @property (weak, nonatomic) IBOutlet UIView *headlineNewsUIView;
+@property (weak, nonatomic) IBOutlet UIImageView *headlineImageView;
 @property (weak, nonatomic) IBOutlet UIScrollView *newsScrollView;
 @property (nonatomic, assign) float headlineOffsetY;
 @property (nonatomic, assign) float headlineOriginalY;
+@property (nonatomic, assign) int imageCycle;
+
 
 @end
 
@@ -35,7 +38,20 @@
     
     
     self.newsScrollView.contentSize = CGSizeMake(1444, 253);
+    
+   //creating a timer
+    
+    [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(imageCycle:) userInfo:nil repeats:YES];
+
+
+    //setting image cycle
+    self.imageCycle = 1;
+    
+    
+    
 }
+
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -80,14 +96,23 @@
      
             
                   self.headlineNewsUIView.frame = CGRectMake(self.headlineNewsUIView.frame.origin.x,(location.y - self.headlineOffsetY) * .08, self.headlineNewsUIView.frame.size.width, self.headlineNewsUIView.frame.size.height);
+  
         
             
         } else {
             
+            // if you're at the top and trying to drag down
             //changing position of the UI view such that it moves with your finger
             
             self.headlineNewsUIView.frame = CGRectMake(self.headlineNewsUIView.frame.origin.x,self.headlineOriginalY + location.y - self.headlineOffsetY, self.headlineNewsUIView.frame.size.width, self.headlineNewsUIView.frame.size.height);
             
+            //shrink the headline image during transit
+            [UIView animateWithDuration:0.2 animations:^{
+               self.headlineImageView.frame = CGRectMake((320 - self.headlineImageView.frame.size.width - location.y*.01)/2, self.headlineImageView.frame.origin.y, self.headlineImageView.frame.size.width - location.y*.005, self.headlineImageView.frame.size.height);
+            }];
+            
+            
+         
         }
         
     } else if (sender.state == UIGestureRecognizerStateEnded) {
@@ -104,6 +129,13 @@
           [UIView animateWithDuration:0.1 animations:^{
             self.headlineNewsUIView.frame = CGRectMake(0,520, self.headlineNewsUIView.frame.size.width, self.headlineNewsUIView.frame.size.height);
           }];
+            
+            //return image to be the original size
+            [UIView animateWithDuration:0.2 animations:^{
+                self.headlineImageView.frame = CGRectMake(0, self.headlineImageView.frame.origin.y, 320, self.headlineImageView.frame.size.height);
+                
+            }];
+            
         }
         //if we're at the starting position and the user doesn't drag far enough
         else if (self.headlineOriginalY == 0 && self.headlineNewsUIView.frame.origin.y - self.headlineOriginalY < 50) {
@@ -113,6 +145,13 @@
                self.headlineNewsUIView.frame = CGRectMake(0,0, self.headlineNewsUIView.frame.size.width, self.headlineNewsUIView.frame.size.height);
            
             }];
+            
+             //return image to be the original size
+            [UIView animateWithDuration:0.2 animations:^{
+                self.headlineImageView.frame = CGRectMake(0, self.headlineImageView.frame.origin.y, 320, self.headlineImageView.frame.size.height);
+                
+            }];
+            
         }
         
         //if we're at the bottom position and the user drags far enough
@@ -124,8 +163,15 @@
        [UIView animateWithDuration:0.1 animations:^{
             self.headlineNewsUIView.frame = CGRectMake(0,0, self.headlineNewsUIView.frame.size.width, self.headlineNewsUIView.frame.size.height);
        }];
+            //return image to be the original size
+            
+            [UIView animateWithDuration:0.2 animations:^{
+                self.headlineImageView.frame = CGRectMake(0, self.headlineImageView.frame.origin.y, 320, self.headlineImageView.frame.size.height);
+                
+            }];
         }
         
+
         
         //if we're at the bottom position and the user doesn't drag far enough
         
@@ -136,7 +182,11 @@
        [UIView animateWithDuration:0.1 animations:^{
             self.headlineNewsUIView.frame = CGRectMake(0,520, self.headlineNewsUIView.frame.size.width, self.headlineNewsUIView.frame.size.height);
        }];
-        
+            //return image to be the original size
+        [UIView animateWithDuration:0.2 animations:^{
+                self.headlineImageView.frame = CGRectMake(0, self.headlineImageView.frame.origin.y, 320, self.headlineImageView.frame.size.height);
+            
+        }];
         }
         
 
@@ -144,4 +194,57 @@
         
     }
 }
+
+
+-(void)imageCycle:(NSTimer *)timer {
+    //do something}
+
+  
+    //if it's image 1 goto 2
+    
+    if (self.imageCycle == 1) {
+        
+        [UIView transitionWithView:self.headlineImageView
+                          duration:1.0f
+                           options:UIViewAnimationOptionTransitionCrossDissolve
+                        animations:^{
+                            [self.headlineImageView setImage:[UIImage imageNamed: @"headline2.png"]];
+                        } completion:nil];
+        
+        
+        self.imageCycle = 2;
+
+        //if it's image 2 goto 3
+    } else if (self.imageCycle == 2) {
+        
+        [UIView transitionWithView:self.headlineImageView
+                          duration:1.0f
+                           options:UIViewAnimationOptionTransitionCrossDissolve
+                        animations:^{
+                            [self.headlineImageView setImage:[UIImage imageNamed: @"headline3.png"]];
+                        } completion:nil];
+            
+   
+        
+        self.imageCycle = 3;
+        
+    } else if (self.imageCycle == 3) {
+        
+        [UIView transitionWithView:self.headlineImageView
+                          duration:1.0f
+                           options:UIViewAnimationOptionTransitionCrossDissolve
+                        animations:^{
+                            [self.headlineImageView setImage:[UIImage imageNamed: @"headline.png"]];
+                        } completion:nil];
+        
+        
+        self.imageCycle = 1;
+ 
+    }
+    
+    
+    //if it's image 3 goto 1
+    
+}
+
 @end
