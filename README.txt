@@ -1,0 +1,1 @@
+All optional and required tasks completed, spent probably 9-10 hours on the homework+mocks
